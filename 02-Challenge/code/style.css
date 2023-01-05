@@ -1,0 +1,17 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    
+}
+
+
+.header {
+    display: flex;
+    justify-content: center;
+    height:100px;
+    width: 100%;
+    background-color: beige;
+}
+
+.strtBtn {
+    text-align: center;
+}
