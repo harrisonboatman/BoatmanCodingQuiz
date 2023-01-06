@@ -22,6 +22,7 @@ var totalTime;
 var questionIndex = 0;
 var correctAns = 0;
 
+replay.style.display = "none";
 
 
 
@@ -58,6 +59,7 @@ var questions = [
 function start(){
     totalTime = 30;
     timeLeft.textContent = totalTime;
+    questionIndex = 0;
     var timer = setInterval(() => {
         totalTime--;
         timeLeft.textContent = totalTime;
@@ -66,10 +68,10 @@ function start(){
             finishGame();
         }
     }, 1000);
-   
+    replay.style.display = "none";
+
    
     displayQuestion();
-    replay.style.display = "none";
 }
 
 
@@ -114,18 +116,20 @@ function finishGame() {
     ans2.textContent = ''
     ans3.textContent = ''
     ans4.textContent = ''
-    replay.textContent = '<button>Click here to replay</button>'
+    totalTime = 0;
+    replay.style.display = "block";
     console.log(correctAns);
     return;
 };
-function replygame(){
-
-}
-strtBtn.addEventListener('click', start)
-ans1.addEventListener('click', choice1)
-ans2.addEventListener('click', choice2)
-ans3.addEventListener('click', choice3)
-ans4.addEventListener('click', choice4)
+function replaygame(){
+    start();
+};
+strtBtn.addEventListener('click', start);
+ans1.addEventListener('click', choice1);
+ans2.addEventListener('click', choice2);
+ans3.addEventListener('click', choice3);
+ans4.addEventListener('click', choice4);
+replay.addEventListener('click', replaygame);
 
 console.log(question1);
 console.log(question1.answers)
