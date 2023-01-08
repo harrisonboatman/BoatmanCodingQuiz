@@ -137,6 +137,7 @@ function finishGame() {
     submitInit.style.display = 'block';
     score.style.display = 'block';
     result.style.display = 'block';
+    timeLeft.style.display = 'none';
     quest.textContent = 'Game is over!';
     ans1.textContent = ''
     ans2.textContent = ''
