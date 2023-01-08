@@ -1,14 +1,17 @@
 var strtBtn = document.querySelector('.strtBtn');
 var questBox = document.querySelector('.questionBox');
 var quest = document.querySelector('.quest');
-var ans1 = document.querySelector('.ans1')
-var ans2 = document.querySelector('.ans2')
-var ans3 = document.querySelector('.ans3')
-var ans4 = document.querySelector('.ans4')
+var ans1 = document.querySelector('.ans1');
+var ans2 = document.querySelector('.ans2');
+var ans3 = document.querySelector('.ans3');
+var ans4 = document.querySelector('.ans4');
 var timeLeft = document.querySelector('.timeLeft');
 var replay = document.querySelector('.rplyBtn');
 var result = document.querySelector('.result');
 var score = document.querySelector('.score');
+var ldrboard = document.querySelector('.ldrboard');
+var initial = document.querySelector('.initialinput');
+var submitInit = document.querySelector('.submitInit');
 var wins;
 var losses;
 var scoreboard = {
@@ -25,6 +28,9 @@ var questionIndex = 0;
 var correctAns = 0;
 
 replay.style.display = "none";
+initial.style.display = 'none';
+submitInit.style.display = 'none';
+
 
 
 
@@ -59,7 +65,11 @@ var questions = [
 
 ];
 function start(){
-    correctAns = 0
+    correctAns = 0;
+    initial.style.display = 'none';
+    submitInit.style.display = 'none';
+
+    initial.textContent='';
     totalTime = 30;
     timeLeft.textContent = totalTime;
     questionIndex = 0;
@@ -120,36 +130,55 @@ function finishGame() {
     ans3.textContent = ''
     ans4.textContent = ''
     if (correctAns == 5) {
-        result.textContent = 'Congratulations! You won!'
+        result.textContent = 'Congratulations! You won! Input your initials below'
     } else {
-        result.textContent = "I'm sorry, but you missed one or more questions. Click the replay button to try again!"
+        result.textContent = "I'm sorry, but you missed one or more questions.Input your initials bellow, then click the replay button to try again!"
     }
     totalTime = 0;
     replay.style.display = "block";
-    score.textContent = correctAns;
+    initial.style.display = 'block';
+    submitInit.style.display = 'block';
+
+    score.textContent = 'Your final score was' + ' ' + correctAns;
     console.log(correctAns);
-    saveStoredScores();
 };
 function replaygame(){
     start();
 };
-function saveStoredScores (){
-var storedScores = localStorage.getItem("stored scores");
-window.localStorage.setItem("stored scores", score);
-}
 
 function saveHighScore(event) {
     event.preventDefault();
+    timeLeft.style.display = 'none';
+    var scoresarr = [];
+    var storedScores = localStorage.getItem("stored scores");
 
-    if (initials.value === ""){
+    if (initial.value === ""){
         window.alert("Please input your initials!");
         return;
     }
 
+    // if (storedScores === null){
+    //     scoresarr = [];
+    // } else {
+    //     scoresarr = JSON.parse(storedScores)
+    // }
+
     var userScore = {
-        initials: initials.value,
+        initials: initial.value,
         score: score.textContent,
-    }
+    };
+    var scoresarr = scoresarr.push(userScore);
+
+    var scoresarrString = JSON.stringify(scoresarr);
+    window.localStorage.setItem("High scores", scoresarrString);
+    
+    showScores();
+
+    
+}
+
+function showScores() {
+
 }
 strtBtn.addEventListener('click', start);
 ans1.addEventListener('click', choice1);
@@ -157,6 +186,7 @@ ans2.addEventListener('click', choice2);
 ans3.addEventListener('click', choice3);
 ans4.addEventListener('click', choice4);
 replay.addEventListener('click', replaygame);
+submitInit.addEventListener('click', saveHighScore);
 
 console.log(question1);
 console.log(question1.answers)
