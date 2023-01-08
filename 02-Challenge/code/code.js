@@ -7,6 +7,8 @@ var ans3 = document.querySelector('.ans3')
 var ans4 = document.querySelector('.ans4')
 var timeLeft = document.querySelector('.timeLeft');
 var replay = document.querySelector('.rplyBtn');
+var result = document.querySelector('.result');
+var score = document.querySelector('.score');
 var wins;
 var losses;
 var scoreboard = {
@@ -57,6 +59,7 @@ var questions = [
 
 ];
 function start(){
+    correctAns = 0
     totalTime = 30;
     timeLeft.textContent = totalTime;
     questionIndex = 0;
@@ -116,14 +119,38 @@ function finishGame() {
     ans2.textContent = ''
     ans3.textContent = ''
     ans4.textContent = ''
+    if (correctAns == 5) {
+        result.textContent = 'Congratulations! You won!'
+    } else {
+        result.textContent = "I'm sorry, but you missed one or more questions. Click the replay button to try again!"
+    }
     totalTime = 0;
     replay.style.display = "block";
+    score.textContent = correctAns;
     console.log(correctAns);
-    return;
+    saveStoredScores();
 };
 function replaygame(){
     start();
 };
+function saveStoredScores (){
+var storedScores = localStorage.getItem("stored scores");
+window.localStorage.setItem("stored scores", score);
+}
+
+function saveHighScore(event) {
+    event.preventDefault();
+
+    if (initials.value === ""){
+        window.alert("Please input your initials!");
+        return;
+    }
+
+    var userScore = {
+        initials: initials.value,
+        score: score.textContent,
+    }
+}
 strtBtn.addEventListener('click', start);
 ans1.addEventListener('click', choice1);
 ans2.addEventListener('click', choice2);
