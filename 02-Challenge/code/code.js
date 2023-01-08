@@ -68,6 +68,10 @@ function start(){
     correctAns = 0;
     initial.style.display = 'none';
     submitInit.style.display = 'none';
+    timeLeft.style.display = 'block';
+    ldrboard.style.display = 'none';
+    result.style.display = 'none';
+    score.style.display = 'none';
 
     initial.textContent='';
     totalTime = 30;
@@ -138,6 +142,7 @@ function finishGame() {
     replay.style.display = "block";
     initial.style.display = 'block';
     submitInit.style.display = 'block';
+    score.style.display = 'block';
 
     score.textContent = 'Your final score was' + ' ' + correctAns;
     console.log(correctAns);
@@ -171,6 +176,7 @@ function saveHighScore(event) {
 }
 
 function showScores() {
+    ldrboard.style.display = 'block';
 
     var savedScores = localStorage.getItem("High scores");
     // if (savedScores === null) {
@@ -183,7 +189,7 @@ function showScores() {
 
     for (i=0; i<storedHighScores.length; i++) {
         var newScore = document.createElement("p");
-        newScore.innerHTML = storedHighScores[i].initials + ": " + storedHighScores[i].value;
+        newScore.innerHTML = storedHighScores[i].initials + ": " + correctAns;
         ldrboard.appendChild(newScore);
     }
 
