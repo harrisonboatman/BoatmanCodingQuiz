@@ -12,6 +12,7 @@ var score = document.querySelector('.score');
 var ldrboard = document.querySelector('.ldrboard');
 var initial = document.querySelector('.initialinput');
 var submitInit = document.querySelector('.submitInit');
+var clrScores = document.querySelector('.clrScores');
 var wins;
 var losses;
 var scoreboard = {
@@ -30,6 +31,7 @@ var correctAns = 0;
 replay.style.display = "none";
 initial.style.display = 'none';
 submitInit.style.display = 'none';
+clrScores.style.display = 'none';
 
 
 
@@ -72,6 +74,8 @@ function start(){
     ldrboard.style.display = 'none';
     result.style.display = 'none';
     score.style.display = 'none';
+    clrScores.style.display = 'none';
+
 
     initial.textContent='';
     totalTime = 30;
@@ -177,13 +181,15 @@ function saveHighScore(event) {
 
 function showScores() {
     ldrboard.style.display = 'block';
+    clrScores.style.display = 'block';
+
 
     var savedScores = localStorage.getItem("High scores");
-    // if (savedScores === null) {
-    //     return;
+    if (savedScores === null) {
+        return;
         
-    // }
-    console.log(savedScores);
+    }
+    // console.log(savedScores);
 
     var storedHighScores = JSON.parse(savedScores);
 
@@ -202,7 +208,8 @@ ans4.addEventListener('click', choice4);
 replay.addEventListener('click', replaygame);
 submitInit.addEventListener('click', saveHighScore);
 
-console.log(question1);
-console.log(question1.answers)
-console.log(questions.length)
-console.log(questions[2]);
+
+// console.log(question1);
+// console.log(question1.answers)
+// console.log(questions.length)
+// console.log(questions[2]);
