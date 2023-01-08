@@ -132,6 +132,11 @@ function choice4() {check(3);}
 
 
 function finishGame() {
+    replay.style.display = "block";
+    initial.style.display = 'block';
+    submitInit.style.display = 'block';
+    score.style.display = 'block';
+    result.style.display = 'block';
     quest.textContent = 'Game is over!';
     ans1.textContent = ''
     ans2.textContent = ''
@@ -143,10 +148,7 @@ function finishGame() {
         result.textContent = "I'm sorry, but you missed one or more questions.Input your initials bellow, then click the replay button to try again!"
     }
     totalTime = 0;
-    replay.style.display = "block";
-    initial.style.display = 'block';
-    submitInit.style.display = 'block';
-    score.style.display = 'block';
+    
 
     score.textContent = 'Your final score was' + ' ' + correctAns;
     console.log(correctAns);
@@ -207,7 +209,10 @@ ans3.addEventListener('click', choice3);
 ans4.addEventListener('click', choice4);
 replay.addEventListener('click', replaygame);
 submitInit.addEventListener('click', saveHighScore);
-
+clrScores.addEventListener('click', function(){
+    window.localStorage.removeItem("High scores");
+    ldrboard.textContent = 'High Scores have now been reset!';
+});
 
 // console.log(question1);
 // console.log(question1.answers)
