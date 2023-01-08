@@ -202,7 +202,7 @@ function showScores() {
 
     for (i=0; i<storedHighScores.length; i++) {
         var newScore = document.createElement("p");
-        newScore.innerHTML = storedHighScores[i].initials + ": " + correctAns;
+        newScore.textContent = storedHighScores[i].initials + ": " + correctAns;
         ldrboard.appendChild(newScore);
     }
 
@@ -216,7 +216,9 @@ replay.addEventListener('click', replaygame);
 submitInit.addEventListener('click', saveHighScore);
 clrScores.addEventListener('click', function(){
     window.localStorage.removeItem("High scores");
-    ldrboard.textContent = 'High Scores have now been reset!';
+    ldrboard.textContent = "";
+    window.alert("High scores have now been reset!")
+
 });
 
 // console.log(question1);
