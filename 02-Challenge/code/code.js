@@ -32,6 +32,7 @@ replay.style.display = "none";
 initial.style.display = 'none';
 submitInit.style.display = 'none';
 clrScores.style.display = 'none';
+questBox.style.display = 'none';
 
 
 
@@ -75,6 +76,7 @@ function start(){
     result.style.display = 'none';
     score.style.display = 'none';
     clrScores.style.display = 'none';
+    questBox.style.display = 'flex';
 
 
     initial.textContent='';
@@ -138,6 +140,8 @@ function finishGame() {
     score.style.display = 'block';
     result.style.display = 'block';
     timeLeft.style.display = 'none';
+    questBox.style.display = 'none';
+
     quest.textContent = 'Game is over!';
     ans1.textContent = ''
     ans2.textContent = ''
